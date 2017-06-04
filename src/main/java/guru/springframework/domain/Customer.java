@@ -1,6 +1,8 @@
 package guru.springframework.domain;
 
+import javax.persistence.Entity;
 
+@Entity
 public class Customer extends AbstractDomainClass {
 
     private String firstName;
