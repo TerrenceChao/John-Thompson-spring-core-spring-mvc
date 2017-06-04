@@ -1,5 +1,6 @@
 package guru.springframework;
 
+import org.apache.catalina.core.ApplicationContext;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -7,6 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpringCoreSpringMvcApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringCoreSpringMvcApplication.class, args);
+		ApplicationContext ctx = (ApplicationContext) SpringApplication.run(SpringCoreSpringMvcApplication.class, args);
 	}
 }
