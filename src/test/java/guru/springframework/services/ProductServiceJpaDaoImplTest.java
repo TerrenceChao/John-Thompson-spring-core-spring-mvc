@@ -75,6 +75,8 @@ public class ProductServiceJpaDaoImplTest {
 		assert modifiedProduct.getId() == newProductID;
 		
 		//test delete
+		Product deletedProduct = this.productService.getById(newProductID);
+		assert deletedProduct.getId() == newProductID;
 		this.productService.delete(newProductID);
 		assert this.productService.getById(newProductID) == null;
 		assert this.productService.listAll().size() == 5;
