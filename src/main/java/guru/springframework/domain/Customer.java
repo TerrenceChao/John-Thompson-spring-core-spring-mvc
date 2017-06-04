@@ -1,8 +1,9 @@
 package guru.springframework.domain;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 
-@Entity
+//@Entity
 public class Customer extends AbstractDomainClass {
 
     private String firstName;
@@ -10,8 +11,10 @@ public class Customer extends AbstractDomainClass {
     private String email;
     private String phoneNumber;
     
+//    @Embedded
     private Address billingAddress;
 
+//    @Embedded
 	private Address shippingAddress;	
     
 	public String getFirstName() {
