@@ -43,7 +43,7 @@ public class ProductControllerTest {
     	products.add(new Product());
     	
     	//specific Mockito interaction, tell stub to return list of products
-        when(productService.listAll()).thenReturn((List) products); //need
+        when(productService.listAll()).thenReturn((List) products); //need to strip generics to keep Mockito happy.
         
         this.mockMvc.perform(get("/product/v1.0/list"))
         			.andExpect(status().isOk())
