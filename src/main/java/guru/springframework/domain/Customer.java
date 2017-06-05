@@ -13,7 +13,7 @@ public class Customer extends AbstractDomainClass {
     private String email;
     private String phoneNumber;
     
-    @OneToOne(cascade = {CascadeType.MERGE})
+    @OneToOne(cascade = {CascadeType.ALL})
     private User user;
     
 

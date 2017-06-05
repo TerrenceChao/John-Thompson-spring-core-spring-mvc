@@ -32,8 +32,8 @@ public class User extends AbstractDomainClass {
 		return customer;
 	}
 	public void setCustomer(Customer customer) {
-		customer.setUser(this);
 		this.customer = customer;
+		customer.setUser(this);
 	}
 	
 	public String getUsername() {
