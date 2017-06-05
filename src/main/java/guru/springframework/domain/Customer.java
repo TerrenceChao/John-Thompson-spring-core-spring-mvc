@@ -13,15 +13,15 @@ public class Customer extends AbstractDomainClass {
     private String email;
     private String phoneNumber;
     
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.MERGE})
     private User user;
     
 
-//    @Embedded
-//    private Address billingAddress;
-//
-//    @Embedded
-//	private Address shippingAddress;	
+    @Embedded
+    private Address billingAddress;
+
+    @Embedded
+	private Address shippingAddress;	
     
 	public String getFirstName() {
 		return firstName;
@@ -48,21 +48,21 @@ public class Customer extends AbstractDomainClass {
 		this.phoneNumber = phoneNumber;
 	}
     
-//	public Address getBillingAddress() {
-//		return this.billingAddress;
-//	}
-//	
-//	public void setBillingAddress(Address address) {
-//		this.billingAddress = address;
-//	}
-//	
-//	public Address getShippingAddress() {
-//		return this.shippingAddress;
-//	}
-//	
-//	public void setShippingAddress(Address address) {
-//		this.shippingAddress = address;
-//	}
+	public Address getBillingAddress() {
+		return this.billingAddress;
+	}
+	
+	public void setBillingAddress(Address address) {
+		this.billingAddress = address;
+	}
+	
+	public Address getShippingAddress() {
+		return this.shippingAddress;
+	}
+	
+	public void setShippingAddress(Address address) {
+		this.shippingAddress = address;
+	}
     
     public User getUser() {
 		return user;
