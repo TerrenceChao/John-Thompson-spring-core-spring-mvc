@@ -1,9 +1,11 @@
 package guru.springframework.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
-//@Entity
+@Entity
 public class Customer extends AbstractDomainClass {
 
     private String firstName;
@@ -11,11 +13,15 @@ public class Customer extends AbstractDomainClass {
     private String email;
     private String phoneNumber;
     
-//    @Embedded
-    private Address billingAddress;
+    @OneToOne
+    private User user;
+    
 
 //    @Embedded
-	private Address shippingAddress;	
+//    private Address billingAddress;
+//
+//    @Embedded
+//	private Address shippingAddress;	
     
 	public String getFirstName() {
 		return firstName;
@@ -42,20 +48,27 @@ public class Customer extends AbstractDomainClass {
 		this.phoneNumber = phoneNumber;
 	}
     
-	public Address getBillingAddress() {
-		return this.billingAddress;
-	}
-	
-	public void setBillingAddress(Address address) {
-		this.billingAddress = address;
-	}
-	
-	public Address getShippingAddress() {
-		return this.shippingAddress;
-	}
-	
-	public void setShippingAddress(Address address) {
-		this.shippingAddress = address;
+//	public Address getBillingAddress() {
+//		return this.billingAddress;
+//	}
+//	
+//	public void setBillingAddress(Address address) {
+//		this.billingAddress = address;
+//	}
+//	
+//	public Address getShippingAddress() {
+//		return this.shippingAddress;
+//	}
+//	
+//	public void setShippingAddress(Address address) {
+//		this.shippingAddress = address;
+//	}
+    
+    public User getUser() {
+		return user;
 	}
     
+	public void setUser(User user) {
+		this.user = user;
+	}
 }
