@@ -21,11 +21,11 @@ public class CustomerServiceJpaDaoImplTest {
 	@Autowired
 	private CustomerService customerService;
 
-//	@Test
-//	public void testList() throws Exception { 
-//		List<Customer> customers = this.customerService.listAll();
-//		assert customers.size() == 0;
-//	}
+	@Test
+	public void testList() throws Exception { 
+		List<Customer> customers = this.customerService.listAll();
+		assert customers.size() == 3;
+	}
 	
 	@Test
 	public void testSaveOfCustomer() throws Exception {
