@@ -15,3 +15,10 @@ memo:
 1. optimistic locking (樂觀鎖定)
   a. https://openhome.cc/Gossip/HibernateGossip/OptimisticLocking.html
   b. google 悲觀鎖定
+
+2. About database relationship:
+ a. About "CascadeType" (MERGE, PERSIST, REMOVE, REFRESH, ALL)
+ http://blog.csdn.net/lizhengnanhua/article/details/8893329
+
+ b. About "orphanRemoval"
+ http://blog.csdn.net/chjttony/article/details/5875176
