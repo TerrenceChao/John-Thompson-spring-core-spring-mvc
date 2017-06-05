@@ -13,39 +13,13 @@ import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
 @Entity
-public class Cart implements DomainObject {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
-	
-	@Version
-	private Integer Version;
+public class Cart extends AbstractDomainClass {
 	
 	@OneToOne
 	private User user;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="cart", orphanRemoval = true)
 	private List<CartDetail> carDetails = new ArrayList<>();
-
-
-	@Override
-	public Integer getId() {
-		return this.id;
-	}
-
-	@Override
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public Integer getVersion() {
-		return Version;
-	}
-
-	public void setVersion(Integer version) {
-		Version = version;
-	}
 
 	public User getUser() {
 		return user;
