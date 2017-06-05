@@ -33,12 +33,10 @@ public class CustomerServiceJpaDaoImpl extends AbstractJpaDaoService implements 
 
 	@Override
 	public Customer saveOrUpdate(Customer domainObject) {
-		if (domainObject.getUser() == null || domainObject.getUser().getPassword() == null) {
-			System.out.println("No user or password");
-			return null;
+		if (domainObject.getUser() != null && domainObject.getUser().getPassword() != null) {
+			String encryptPw = this.encryptService.encryptString(domainObject.getUser().getPassword());
+			domainObject.getUser().setEncryptedPassword(encryptPw);
 		}
-		String encryptPw = this.encryptService.encryptString(domainObject.getUser().getPassword());
-		domainObject.getUser().setEncryptedPassword(encryptPw);
 		
 		EntityManager em = this.emf.createEntityManager();
 		em.getTransaction().begin();
