@@ -56,6 +56,7 @@ public class ProductController {
 		return "redirect:/product/v1.0/show/" + savedProduct.getId();
 	}
 	
+	//delete
 	@RequestMapping(value = "/delete/{id}")
 	public String delete(@PathVariable Integer id) {
 		this.productService.delete(id);
