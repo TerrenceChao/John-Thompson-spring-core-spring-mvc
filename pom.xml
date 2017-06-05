@@ -69,6 +69,14 @@
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
+<!-- password encryption. https://mvnrepository.com/artifact/org.jasypt/jasypt -->
+	<dependency>
+	    <groupId>org.jasypt</groupId>
+	    <artifactId>jasypt</artifactId>
+	    <version>1.9.2</version>
+	</dependency>
+
 		
 	</dependencies>
 
