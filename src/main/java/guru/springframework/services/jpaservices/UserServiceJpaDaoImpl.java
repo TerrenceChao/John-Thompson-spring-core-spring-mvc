@@ -33,13 +33,10 @@ public class UserServiceJpaDaoImpl extends AbstractJpaDaoService implements User
 
 	@Override
 	public User saveOrUpdate(User domainObject) {		
-		if (domainObject.getPassword() == null) {
-			System.out.println("No password");
-			return null;
+		if (domainObject.getPassword() != null) {
+			String encryptedPassword = this.encryptService.encryptString(domainObject.getPassword());
+			domainObject.setEncryptedPassword(encryptedPassword);
 		}
-		
-		String encryptedPassword = this.encryptService.encryptString(domainObject.getPassword());
-		domainObject.setEncryptedPassword(encryptedPassword);
 		
 		EntityManager em = this.emf.createEntityManager();
 		em.getTransaction().begin();
@@ -53,14 +50,8 @@ public class UserServiceJpaDaoImpl extends AbstractJpaDaoService implements User
 	public void delete(Integer id) {
 		EntityManager em = this.emf.createEntityManager();
 		
-		User user = em.find(User.class, id);
-		if (user.getPassword() == null) {
-			System.out.println("No password");
-			return;
-		}		
-
 		em.getTransaction().begin();
-		em.remove(user);
+		em.remove(em.find(User.class, id));
 		em.getTransaction().commit();
 	}
 
