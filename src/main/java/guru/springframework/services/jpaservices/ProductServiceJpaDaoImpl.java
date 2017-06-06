@@ -11,7 +11,7 @@ import guru.springframework.domain.Product;
 import guru.springframework.services.ProductService;
 
 @Service
-@Profile("jpadao")
+@Profile("jpadao-dontuse")
 public class ProductServiceJpaDaoImpl extends AbstractJpaDaoService implements ProductService {
 	
 	@Override
