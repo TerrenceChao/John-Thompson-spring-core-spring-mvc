@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import guru.springframework.commands.ProductForm;
 import guru.springframework.domain.Product;
 import guru.springframework.services.ProductService;
 
@@ -44,6 +45,12 @@ public class ProductServiceJpaDaoImpl extends AbstractJpaDaoService implements P
 		em.getTransaction().begin();
 		em.remove(em.find(Product.class, id));
 		em.getTransaction().commit();
+	}
+
+	@Override
+	public Product saveOrUpdateProductForm(ProductForm productForm) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
