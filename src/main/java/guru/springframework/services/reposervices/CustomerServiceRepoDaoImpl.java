@@ -6,11 +6,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import guru.springframework.commands.CustomerForm;
 import guru.springframework.converters.CustomerFormToCustomer;
 import guru.springframework.domain.Customer;
 import guru.springframework.repositories.CustomerRepository;
+import guru.springframework.repositories.UserRepository;
 import guru.springframework.services.CustomerService;
 
 @Service
@@ -19,6 +21,9 @@ public class CustomerServiceRepoDaoImpl implements CustomerService {
 
 	@Autowired
 	private CustomerRepository customerRepository;
+	
+	@Autowired
+	private UserRepository userRepository; 
 	
 	@Autowired
 	private CustomerFormToCustomer customerFormToCustomer; 
@@ -53,8 +58,12 @@ public class CustomerServiceRepoDaoImpl implements CustomerService {
 	}
 
 	@Override
+	@Transactional
 	public void delete(Integer id) {
-		customerRepository.delete(id);
+		Customer customer = customerRepository.findOne(id);
+		
+		userRepository.delete(customer.getUser());
+		customerRepository.delete(customer);
 		
 	}
 }
