@@ -1,8 +1,11 @@
 package guru.springframework.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -64,7 +67,12 @@ public class CustomerController {
 	
 	//confirm create/update
 	@RequestMapping(value = "/confirmForm", method = RequestMethod.POST)
-	public String saveOrUpdate(CustomerForm customerForm) {
+	public String saveOrUpdate(@Valid CustomerForm customerForm, BindingResult bindingResult) {
+		
+		if (bindingResult.hasErrors()) {
+			return "customer/customerform";
+		}
+		
 		Customer savedCustomer = this.customerService.saveOrUpdateCustomerform(customerForm);
 		return "redirect:/customer/v1.0/show/" + savedCustomer.getId();
 	}
