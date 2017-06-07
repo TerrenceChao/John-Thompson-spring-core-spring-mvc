@@ -12,7 +12,7 @@ import guru.springframework.repositories.ProductRepository;
 import guru.springframework.services.ProductService;
 
 @Service
-@Profile("jpadao")
+@Profile("springdatajpa")
 public class ProductServiceRepoDaoImpl implements ProductService {
 
 	@Autowired

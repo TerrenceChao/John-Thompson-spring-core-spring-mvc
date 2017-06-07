@@ -13,7 +13,7 @@ import guru.springframework.services.UserService;
 import guru.springframework.services.security.EncryptionService;
 
 @Service
-@Profile("jpadao")
+@Profile({"jpadao", "springdatajpa"})
 public class UserServiceJpaDaoImpl extends AbstractJpaDaoService implements UserService {
 
 	@Autowired
