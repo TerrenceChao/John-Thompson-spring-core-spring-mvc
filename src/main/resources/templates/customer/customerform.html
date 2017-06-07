@@ -22,10 +22,7 @@
 	    		th:object="${customerForm}" th:action="@{/customer/v1.0/confirmForm}">
 	    		
 	    		<div th:if="${ #fields.hasErrors('*') }" class="alert alert-danger">
-	    			<p>Errors:</p>
-	    			<ul>
-	    				<li th:each="err : ${#fields.hasErrors('*')}" th:text="${err}">Validation Error</li>
-	    			</ul>
+	    			<p th:text="#{form.hasErrors}">Error Message</p>
 	    		</div>
 	    		
 	            <input type="hidden" th:field="*{userId}"/>
