@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import guru.springframework.commands.CustomerForm;
 import guru.springframework.commands.validators.CustomerFormValidator;
+import guru.springframework.converters.CustomerToCustomerForm;
 import guru.springframework.domain.Customer;
 import guru.springframework.services.CustomerService;
 
@@ -25,6 +26,9 @@ public class CustomerController {
 	
 	@Autowired
 	private CustomerFormValidator customerFormValidator; 
+	
+	@Autowired
+	private CustomerToCustomerForm customerToCustomerForm;
 	
 	//read all
 	@RequestMapping("/list")
@@ -52,19 +56,7 @@ public class CustomerController {
 	public String edit(@PathVariable Integer id, Model model) {
 		
 		Customer customer = this.customerService.getById(id);
-		CustomerForm customerForm = new CustomerForm();
-		
-        customerForm.setUserId(customer.getUser().getId());
-        customerForm.setUserName(customer.getUser().getUsername());
-        customerForm.setUserVersion(customer.getUser().getVersion());
-        customerForm.setPassword(customer.getUser().getPassword());
-        
-		customerForm.setCustomerId(customer.getId());
-        customerForm.setCustomerVersion(customer.getVersion());
-        customerForm.setEmail(customer.getEmail());
-        customerForm.setFirstName(customer.getFirstName());
-        customerForm.setLastName(customer.getLastName());
-        customerForm.setPhoneNumber(customer.getPhoneNumber());
+		CustomerForm customerForm = customerToCustomerForm.convert(customer);
 		
 		model.addAttribute("customerForm", customerForm);
 		return "customer/customerform";
