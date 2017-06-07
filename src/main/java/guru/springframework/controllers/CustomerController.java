@@ -3,6 +3,7 @@ package guru.springframework.controllers;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import guru.springframework.commands.CustomerForm;
+import guru.springframework.commands.validators.CustomerFormValidator;
 import guru.springframework.domain.Customer;
 import guru.springframework.services.CustomerService;
 
@@ -20,6 +22,9 @@ public class CustomerController {
 
 	@Autowired
 	private CustomerService customerService;
+	
+	@Autowired
+	private CustomerFormValidator customerFormValidator; 
 	
 	//read all
 	@RequestMapping("/list")
@@ -68,6 +73,8 @@ public class CustomerController {
 	//confirm create/update
 	@RequestMapping(value = "/confirmForm", method = RequestMethod.POST)
 	public String saveOrUpdate(@Valid CustomerForm customerForm, BindingResult bindingResult) {
+		
+		this.customerFormValidator.validate(customerForm, bindingResult);
 		
 		if (bindingResult.hasErrors()) {
 			return "customer/customerform";
