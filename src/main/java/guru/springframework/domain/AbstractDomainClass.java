@@ -1,58 +1,56 @@
 package guru.springframework.domain;
 
+import javax.persistence.*;
 import java.util.Date;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Version;
-
+/**
+ * Created by jt on 12/16/15.
+ */
 @MappedSuperclass
-public class AbstractDomainClass implements DomainObject  {
+public class AbstractDomainClass implements DomainObject {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Integer id;
 
-	@Version
+    @Version
     private Integer version;
 
-	private Date dateCreated;
+    private Date dateCreated;
     private Date lastUpdated;
 
+    @Override
+    public Integer getId() {
+        return this.id;
+    }
+
+    @Override
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Integer getVersion() {
-		return version;
-	}
+        return version;
+    }
 
-	public void setVersion(Integer version) {
-		this.version = version;
-	}
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
 
-	public Date getDateCreated() {
-		return dateCreated;
-	}
+    public Date getDateCreated() {
+        return dateCreated;
+    }
 
-	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
-	}
+    public Date getLastUpdated() {
+        return lastUpdated;
+    }
 
-	public Date getLastUpdated() {
-		return lastUpdated;
-	}
-
-	public void setLastUpdated(Date lastUpdated) {
-		this.lastUpdated = lastUpdated;
-	}
-    
-	@Override
-	public Integer getId() {
-		return this.id;
-	}
-
-	@Override
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
+    @PreUpdate
+    @PrePersist
+    public void updateTimeStamps() {
+        lastUpdated = new Date();
+        if (dateCreated==null) {
+            dateCreated = new Date();
+        }
+    }
 }

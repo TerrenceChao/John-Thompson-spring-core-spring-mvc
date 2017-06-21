@@ -1,5 +1,8 @@
 package guru.springframework.domain;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Address {
 
     private String addressLine1;
